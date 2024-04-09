@@ -8,14 +8,15 @@ import SignIn from './pages/signin/SignIn'
 import Home from './pages/home/Home'
 import { useAuthContext } from "./context/AuthContext";
 import Navbar from './components/navbar/Navbar';
-import Cookies from 'js-cookie';
 import useHasTokenExpired from './hooks/useHasTokenExpired';
-import useGetAllOrders from './hooks/useGetAllOrders';
 import Orders from './pages/order/Orders';
 import AddProduct from './pages/product/AddProduct';
 
 function App() {
   const { authUser } = useAuthContext();
+
+  console.log(import.meta.env.VITE_API_URL);
+
 
 
   useEffect(() => {
