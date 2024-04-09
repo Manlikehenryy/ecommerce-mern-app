@@ -17,7 +17,6 @@ import AddProduct from './pages/product/AddProduct';
 function App() {
   const { authUser } = useAuthContext();
 
-  
 
   useEffect(() => {
     async function isTokenExpired() {

@@ -7,6 +7,7 @@ import orderRoutes from "./routes/order.routes.js"
 import connectToMongoDB from "./db/connectToMongoDB.js";
 import cookieParser from "cookie-parser";
 import path from "path";
+import { log } from "console";
 
 
 dotenv.config();

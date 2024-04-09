@@ -149,3 +149,22 @@ export const hasTokenExpired = (req,res) =>{
 		res.status(500).json({status: "failed", error: "Internal Server Error" });
 	}
 }
+
+export const fetchPaystackKey = (req,res) =>{
+    try {
+		const key = process.env.PAYSTACK_KEY || '';
+		console.log(key);
+		if (key) {
+			res.status(200).json({status: "success", data: { key } });
+		}
+		else{
+			res.status(404).json({status: "failed", error: "Key was not found" });
+		}
+
+		
+	} catch (error) {
+		console.log("Error in fetchPaystackKey controller", error.message);
+		res.status(500).json({status: "failed", error: "Internal Server Error" });
+	}
+}
+

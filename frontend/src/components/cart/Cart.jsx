@@ -17,6 +17,14 @@ import { useAuthContext } from "../../context/AuthContext";
   const {cartItemDetails, loading} = useGetAllCartItemDetails();
   const {loadingOrder, addOrder} = useAddOrder();
   const { authUser } = useAuthContext();
+  const [key, setKey] = useState('');
+
+  useEffect(() => {
+    fetch('/api/auth/paystackkey')
+      .then((response) => response.json())
+      .then((data) => setKey(data.data.key))
+      .catch((error) => console.error('Error fetching API key:', error));
+  }, []);
 
   const makePayment = async () =>{
    const reference = (new Date()).getTime().toString();
@@ -24,7 +32,7 @@ import { useAuthContext } from "../../context/AuthContext";
    await addOrder(reference);
 
 
-   usePaystack({email: authUser?.data.username, amount: totalPrice*100, reference: reference});
+   usePaystack({email: authUser?.data.username, amount: totalPrice*100, reference: reference},key);
   }
 
   useEffect(()=>{

@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PaystackPop from '@paystack/inline-js'
 import toast from "react-hot-toast";
 
 
 
 
-const usePaystack = (config) => {
+const usePaystack = (config,key) => {
+
+
     const paystack = new PaystackPop();
     paystack.newTransaction({
         ...config,
@@ -16,7 +18,7 @@ const usePaystack = (config) => {
             const res = await fetch(`https://api.paystack.co/transaction/verify/${transaction.reference}`, {
               method: "GET",
               headers: {
-                "Authorization": "Bearer sk_test_ecbe94713cea2f465c5f703575916afec8142ffe",
+                "Authorization": key,
               "Cache-Control": "no-cache" 
             },
             });
